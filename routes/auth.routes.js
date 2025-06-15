@@ -1,24 +1,25 @@
+// routes/auth.routes.js
+
 const express = require('express');
-const passport = require('passport');
 const authController = require('../controllers/auth.controller');
 const router = express.Router();
 
-// Inisiasi login dengan Google
-router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-
-// Callback setelah login dari Google
-router.get('/google/callback',
-  passport.authenticate('google', { failureRedirect: '/login-failed' }),
-  authController.googleCallback
-);
-// ROUTE BARU UNTUK LOGIN ANDROID
+/**
+ * Route untuk login dari aplikasi Android.
+ * Method: POST
+ * URL: /auth/google/app-login
+ * Body: { "token": "idToken_dari_google" }
+ * Controller: authController.appLogin
+ */
 router.post('/google/app-login', authController.appLogin);
 
-// Logout
+/**
+ * Route untuk logout. Dalam sistem JWT, ini hanya formalitas di sisi server.
+ * Proses logout sebenarnya terjadi di client dengan menghapus token.
+ * Method: GET
+ * URL: /auth/logout
+ */
 router.get('/logout', authController.logout);
-
-// Cek status login
-router.get('/status', authController.status);
 
 
 module.exports = router;
