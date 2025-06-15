@@ -14,3 +14,5 @@ router.put('/:id', upload, barangController.update);
 router.delete('/:id', barangController.delete);
 
 module.exports = router;
+
+// test
