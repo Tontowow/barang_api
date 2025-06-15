@@ -11,6 +11,8 @@ router.get('/google/callback',
   passport.authenticate('google', { failureRedirect: '/login-failed' }),
   authController.googleCallback
 );
+// ROUTE BARU UNTUK LOGIN ANDROID
+router.post('/google/app-login', authController.appLogin);
 
 // Logout
 router.get('/logout', authController.logout);
